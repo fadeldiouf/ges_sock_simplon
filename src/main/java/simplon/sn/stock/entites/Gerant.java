@@ -6,17 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 //@Data
 //@NoArgsConstructor @AllArgsConstructor @ToString
 //@Getter
 //@Setter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class , property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class , property = "id")
 public class Gerant  implements Serializable{
 
 	/**
@@ -33,8 +29,8 @@ public class Gerant  implements Serializable{
 	private String civilite;
 	private String genre;
 	private String cni;
-	@OneToOne(targetEntity=Magasin.class,mappedBy = "gerant")
-    private Magasin magasin;
+//	@OneToOne(targetEntity=Magasin.class,mappedBy = "gerant")
+//    private Magasin magasin;
 	public Gerant() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -50,7 +46,7 @@ public class Gerant  implements Serializable{
 		this.civilite = civilite;
 		this.genre = genre;
 		this.cni = cni;
-		this.magasin = magasin;
+//		this.magasin = magasin;
 	}
 	public Long getId() {
 		return id;
@@ -104,15 +100,14 @@ public class Gerant  implements Serializable{
 		return cni;
 	}
 	public void setCni(String cni) {
-		this.cni = cni;
-	}
-	public Magasin getMagasin() {
-		return magasin;
-	}
-	
-	public void setMagasin(Magasin magasin) {
-		this.magasin = magasin;
-	}
+		this.cni = cni;	}
+//	public Magasin getMagasin() {
+//		return magasin;
+//	}
+//	
+//	public void setMagasin(Magasin magasin) {
+//		this.magasin = magasin;
+//	}
 	
 
 }

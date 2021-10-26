@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import javax.servlet.ServletContext;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -28,6 +29,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 
 import simplon.sn.stock.dao.ProduitRepository;
 import simplon.sn.stock.entites.Categorie;
+import simplon.sn.stock.entites.Depot;
 import simplon.sn.stock.entites.Produit;
 import simplon.sn.stock.service.ProduitService;
 @CrossOrigin("*")
@@ -78,14 +80,27 @@ public class ProduitController {
 		}
 		
 	@PostMapping("/saveproduit")	
-	public Produit saveProduit(@RequestParam("file") MultipartFile file, @RequestParam("idCat") String idCat, @RequestParam("produit") String produit )
+	public Produit saveProduit(@RequestParam("file") MultipartFile file, @RequestParam("idCat") String idCat, 
+			@RequestParam("idDep") String idDep, @RequestParam("produit") String produit )
 		throws  JsonParseException, JsonMappingException, IOException{
 		Produit produit1 = new ObjectMapper().readValue(produit, Produit.class);
 		Categorie categorie1 = new ObjectMapper().readValue(idCat, Categorie.class);
+		Depot depot1 = new ObjectMapper().readValue(idDep, Depot.class);
 		produit1.setCategorie(categorie1);
 		String filename= file.getOriginalFilename();
 		String newFileName= FilenameUtils.getBaseName(filename)+"."+FilenameUtils.getExtension(filename);
 	    File servrFile = new File(context.getRealPath("/images/"+File.separator+newFileName));
+	    try {
+	    	System.out.println("Image");
+	    	FileUtils.writeByteArrayToFile(servrFile, file.getBytes());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	    produit1.setPhoto(newFileName);
+	    produit1.setCategorie(categorie1);
+	    produit1.setDepot(depot1);
 			return prRepository.save(produit1);
 			
 		}

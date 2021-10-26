@@ -24,9 +24,9 @@ public class GestionStockApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		repositoryRestConfiguration.exposeIdsFor(Produit.class);
-		Produit p = new Produit("sass", "venant", 15000d, null, "marteau.jpg", null, null);
-         produitRepository.save(p);
-		
+//		Produit p = new Produit("sass", "venant", 15000d, null, "marteau.jpg", null, null);
+//         produitRepository.save(p);
+//		
 	}
 
 }

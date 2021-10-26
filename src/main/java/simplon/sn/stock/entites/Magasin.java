@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 
 
 @Entity
@@ -31,7 +30,7 @@ public class Magasin  implements Serializable{
 	private String addresse;
 	private String telephone;
 	private String email;
-	@OneToOne(targetEntity=Gerant.class)
+    @OneToOne(targetEntity=Gerant.class)
 	@JoinColumn(name = "gerant_id")
 	private Gerant gerant;
 	public Magasin() {
@@ -83,7 +82,7 @@ public class Magasin  implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@JsonIdentityReference
+	//@JsonIdentityReference
 	public Gerant getGerant() {
 		return gerant;
 	}

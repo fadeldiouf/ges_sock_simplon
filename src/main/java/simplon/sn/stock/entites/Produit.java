@@ -8,10 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 //import lombok.AllArgsConstructor;
 //import lombok.Data;
 //import lombok.Getter;
@@ -22,7 +18,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 //@Data @NoArgsConstructor @AllArgsConstructor @ToString
 //@Getter
 //@Setter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class , property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class , property = "id")
 public class Produit implements Serializable {
 
 	/**
@@ -45,17 +41,32 @@ public class Produit implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Produit(String nom, String description, Double prixunitaire, Boolean disponible, String photo,
-			Categorie categorie, Depot depot) {
+	
+	public Produit(String nom, String description, Double prixunitaire, Long quantite_stock, Boolean disponible,
+			String photo, Categorie categorie, Depot depot) {
 		super();
 		this.nom = nom;
 		this.description = description;
 		this.prixunitaire = prixunitaire;
+		this.quantite_stock = quantite_stock;
 		this.disponible = disponible;
 		this.photo = photo;
 		this.categorie = categorie;
 		this.depot = depot;
 	}
+	
+
+	public Produit(String nom, String description, Double prixunitaire, Long quantite_stock, Boolean disponible,
+			String photo) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.prixunitaire = prixunitaire;
+		this.quantite_stock = quantite_stock;
+		this.disponible = disponible;
+		this.photo = photo;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -92,19 +103,28 @@ public class Produit implements Serializable {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	@JsonIdentityReference
+//	@JsonIdentityReference
 	public Categorie getCategorie() {
 		return categorie;
 	}
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
-	@JsonIdentityReference
+//	@JsonIdentityReference
 	public Depot getDepot() {
 		return depot;
 	}
 	public void setDepot(Depot depot) {
 		this.depot = depot;
 	}
+
+	public Long getQuantite_stock() {
+		return quantite_stock;
+	}
+
+	public void setQuantite_stock(Long quantite_stock) {
+		this.quantite_stock = quantite_stock;
+	}
+	
 
 }

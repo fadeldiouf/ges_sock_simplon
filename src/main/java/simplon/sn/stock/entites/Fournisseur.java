@@ -8,10 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 //import lombok.AllArgsConstructor;
 //import lombok.Data;
@@ -23,7 +19,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 //@Data @NoArgsConstructor @AllArgsConstructor @ToString
 //@Getter
 //@Setter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class , property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class , property = "id")
 public class Fournisseur implements Serializable {
 
 	/**
@@ -37,8 +33,8 @@ public class Fournisseur implements Serializable {
 	private  String addresse;
 	private String telephone;
 	private String email;
-	@OneToMany(mappedBy = "fournisseur")
-	private Collection<Depot> depots;
+//	@OneToMany(mappedBy = "fournisseur")
+//	private Collection<Depot> depots;
 	public Fournisseur() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -51,7 +47,7 @@ public class Fournisseur implements Serializable {
 		this.addresse = addresse;
 		this.telephone = telephone;
 		this.email = email;
-		this.depots = depots;
+//		this.depots = depots;
 	}
 	public Long getId() {
 		return id;
@@ -90,12 +86,12 @@ public class Fournisseur implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Collection<Depot> getDepots() {
-		return depots;
-	}
-	public void setDepots(Collection<Depot> depots) {
-		this.depots = depots;
-	}
+//	public Collection<Depot> getDepots() {
+//		return depots;
+//	}
+//	public void setDepots(Collection<Depot> depots) {
+//		this.depots = depots;
+//	}
 	
 
 }

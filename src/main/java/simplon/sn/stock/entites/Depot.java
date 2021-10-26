@@ -9,17 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 //@Data @NoArgsConstructor @AllArgsConstructor @ToString
 //@Getter
 //@Setter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class , property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class , property = "id")
 public class Depot implements Serializable {
 
 	/**
@@ -32,22 +27,23 @@ public class Depot implements Serializable {
 	private Date date;
 	private int quantiteinitial;
 	private int quantitecourant;
-	@OneToMany(mappedBy = "depot")
-	private Collection<Produit> produits;
+//	@OneToMany(mappedBy = "depot")
+//	private Collection<Produit> produits;
 	@ManyToOne
 	private Fournisseur fournisseur;
+	@ManyToOne Magasin magasin;
 	public Depot() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Depot(String libelle, Date date, int quantiteinitial, int quantitecourant, Collection<Produit> produits,
-			Fournisseur fournisseur) {
+			Fournisseur fournisseur ) {
 		super();
 		this.libelle = libelle;
 		this.date = date;
 		this.quantiteinitial = quantiteinitial;
 		this.quantitecourant = quantitecourant;
-		this.produits = produits;
+//		this.produits = produits;
 		this.fournisseur = fournisseur;
 	}
 	public Long getId() {
@@ -80,19 +76,26 @@ public class Depot implements Serializable {
 	public void setQuantitecourant(int quantitecourant) {
 		this.quantitecourant = quantitecourant;
 	}
-	public Collection<Produit> getProduits() {
-		return produits;
-	}
-	public void setProduits(Collection<Produit> produits) {
-		this.produits = produits;
-	}
-	@JsonIdentityReference
+//	public Collection<Produit> getProduits() {
+//		return produits;
+//	}
+//	public void setProduits(Collection<Produit> produits) {
+//		this.produits = produits;
+//	}
+//	@JsonIdentityReference
 	public Fournisseur getFournisseur() {
 		return fournisseur;
 	}
 	public void setFournisseur(Fournisseur fournisseur) {
 		this.fournisseur = fournisseur;
 	}
+	public Magasin getMagasin() {
+		return magasin;
+	}
+	public void setMagasin(Magasin magasin) {
+		this.magasin = magasin;
+	}
+	
 
 	
 }
